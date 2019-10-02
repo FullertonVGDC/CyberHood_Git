@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public int playerSpeed = 5;
+    private bool hasControl = true;
+    public int playerHealth = 100;
+    public int playerSpeed = 10;
+    private int dataPoints = 0; // Will only be used if an Upgrade System is implemented.
 
     //Vars for Camera Rotation:
     bool changeCamAngle = false;
@@ -23,16 +26,18 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right*playerSpeed*Time.deltaTime); }
-        if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * playerSpeed * Time.deltaTime); }
-        if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime); }
-        if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * playerSpeed * Time.deltaTime); }
-
-        //if (Input.GetKeyDown(KeyCode.E)) { transform.Rotate(0, 90, 0); }
-        //if (Input.GetKeyDown(KeyCode.Q)) { transform.Rotate(0, -90, 0); }
-
-        if (Input.GetKeyDown(KeyCode.E) && !changeCamAngle) { StartSlerp(90); }
-        if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
+        //If you player has Control
+        if (hasControl) {
+            //Movement Controls:
+            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * playerSpeed * Time.deltaTime); }
+            //Camera Controls:
+            if (Input.GetKeyDown(KeyCode.E) && !changeCamAngle) { StartSlerp(90); }
+            if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
+        }
+        
 
 
     }
@@ -48,6 +53,20 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void takeDmg(int amt) {
+        playerHealth -= amt;
+        //Check/Change UI health counter
+        //Shake UI Screen
+        if (playerHealth <= 0) { Dead(); } // Check if player has died
+            
+    }
+
+    private void Dead() {
+        Debug.Log("Ya Dun Died Fool");
+        hasControl = false;
+        //Play Death Animation
+        //Reload to last Save
+    }
 
     void StartSlerp(int angleChange) {
         changeCamAngle = true;
