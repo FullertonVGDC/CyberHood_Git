@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
     private bool hasControl = true;
     public int playerHealth = 100;
     public int playerSpeed = 10;
-    private int dataPoints = 0; // Will only be used if an Upgrade System is implemented.
+    private int dataPoints = 0; 
+    private bool hasGun = false;
 
     //Vars for Camera Rotation:
     bool changeCamAngle = false;
@@ -20,22 +19,34 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerSpeed = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P)) { takeDmg(5); }
+
         //If you player has Control
         if (hasControl) {
             //Movement Controls:
-            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * playerSpeed * Time.deltaTime); }
-            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * playerSpeed * Time.deltaTime); }
-            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime); }
-            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.D) ) { transform.Translate(Vector3.right * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.A) ) { transform.Translate(Vector3.left * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.W) ) { transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime); }
+            if (Input.GetKey(KeyCode.S) ) { transform.Translate(Vector3.back * playerSpeed * Time.deltaTime); }
             //Camera Controls:
             if (Input.GetKeyDown(KeyCode.E) && !changeCamAngle) { StartSlerp(90); }
             if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
+
+            //Sword Attack:
+            if (Input.GetKey(KeyCode.K) ) {
+                ;
+            }
+
+            //Gun Attack:
+            if (Input.GetKey(KeyCode.L) && hasGun) {
+                ;
+            }
         }
         
 
@@ -53,10 +64,26 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        // Collection of DataPoints
+        if (other.gameObject.tag == "DataPoint") {
+            dataPoints++;
+            // Todo: Check DataPoints Upgrade System
+            Destroy(other.gameObject);
+        }
+    }
+
     public void takeDmg(int amt) {
         playerHealth -= amt;
-        //Check/Change UI health counter
-        //Shake UI Screen
+
+        //UI auto updates based on current Health
+        GameObject tempObj;
+        if ((tempObj = GameObject.FindGameObjectWithTag("HealthBar")) && !tempObj.GetComponent<HealthController>().takingDamage) {
+            tempObj.GetComponent<HealthController>().takingDamage = true;
+            StartCoroutine(tempObj.GetComponent<HealthController>().ShakeHealth()); //Shake UI Screen
+        }
+
         if (playerHealth <= 0) { Dead(); } // Check if player has died
             
     }
@@ -64,8 +91,8 @@ public class PlayerControl : MonoBehaviour
     private void Dead() {
         Debug.Log("Ya Dun Died Fool");
         hasControl = false;
-        //Play Death Animation
-        //Reload to last Save
+        //Todo: Play Death Animation
+        //Todo: Reload to last Save
     }
 
     void StartSlerp(int angleChange) {

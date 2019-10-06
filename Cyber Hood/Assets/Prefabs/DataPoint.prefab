@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5865294726922065189}
   m_Layer: 0
   m_Name: DataPoint
-  m_TagString: Untagged
+  m_TagString: DataPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
