@@ -6,3 +6,4 @@ Updates:
 10/1/19 - Sample Scene created with player.
 	Player movement and basic fncs such as health and collision have been added
 10/2/19 - Created basic movement for AI
+10/11/19 - Created Door Movement when player is near.
