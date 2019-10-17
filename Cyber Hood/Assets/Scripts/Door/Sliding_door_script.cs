@@ -3,22 +3,27 @@
 public class Sliding_door_script : MonoBehaviour
 {
 
-    public GameObject Trigger;
-    public GameObject door;
+    public bool isLocked = false;
+    public Light statusLight;
 
     Animator doorAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        doorAnim = door.GetComponent<Animator>();
+        doorAnim = this.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (isLocked) {
+            statusLight.color = Color.red;
+        }
+        else
+            statusLight.color = Color.green;
     }
+
+
     void SlideDoor(bool state)
     {
         doorAnim.SetBool("slide", state);
@@ -26,7 +31,7 @@ public class Sliding_door_script : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Player" && !isLocked)
         {
             SlideDoor(true);
         }
@@ -40,5 +45,12 @@ public class Sliding_door_script : MonoBehaviour
         }
     }
 
+    public void UnlockDoor() {
+        isLocked = false;
+    }
+
+    public void OpenCloseDoor() {
+        SlideDoor(true);
+    }
  
 }
