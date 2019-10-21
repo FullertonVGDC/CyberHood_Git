@@ -13,10 +13,12 @@ public class PlayerControl1 : MonoBehaviour
     public Transform groundChecker;
     public float groundDistance;
     public LayerMask GroundLayer;
+    public float gravityModifier = 1f;
     private bool _isGrounded = true;
     private bool hasControl = true;
     private CharacterController player_Controller;
     private Vector3 p_Velocity = new Vector3(0,0,0);
+
 
     private Animator p_animator;
 
@@ -27,6 +29,7 @@ public class PlayerControl1 : MonoBehaviour
     Quaternion q_endPosCam;
     float timeStartedSlerpCam;
     public float camSlerpSpeed = 2f;
+    
 
     //Vars for Moving through doors:
     public float thruDoorSpeed = 20f;
@@ -56,7 +59,13 @@ public class PlayerControl1 : MonoBehaviour
         if (hasControl) {
             _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, GroundLayer, QueryTriggerInteraction.Ignore);
             if (_isGrounded)//!isJumping)
+            {
                 p_Velocity.y = 0;
+                p_animator.SetBool("isGrounded", true);
+
+            }
+            else
+                p_animator.SetBool("isGrounded", false);
 
             //Movement Controls:            
             if (Input.GetKey(KeyCode.D) ) { player_Controller.Move(transform.right  * Time.deltaTime * playerSpeed); }
@@ -84,7 +93,7 @@ public class PlayerControl1 : MonoBehaviour
 
         //Always Apply Gravity
         
-        p_Velocity.y += Physics.gravity.y * Time.deltaTime;
+        p_Velocity.y += Physics.gravity.y*gravityModifier * Time.deltaTime;
         player_Controller.Move(p_Velocity * Time.deltaTime);
 
     }
