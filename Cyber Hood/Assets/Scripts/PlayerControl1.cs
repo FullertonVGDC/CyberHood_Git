@@ -7,6 +7,7 @@ public class PlayerControl1 : MonoBehaviour
     public int playerSpeed;
     private int dataPoints = 0; 
     private bool hasGun = false;
+    private Vector3 defaultScale;
 
     //Variables For Movement
     public int jumpForce = 5;    
@@ -15,6 +16,7 @@ public class PlayerControl1 : MonoBehaviour
     public LayerMask GroundLayer;
     public float gravityModifier = 1f;
     private bool _isGrounded = true;
+    private bool _isRunning = false;
     private bool hasControl = true;
     private CharacterController player_Controller;
     private Vector3 p_Velocity = new Vector3(0,0,0);
@@ -46,6 +48,7 @@ public class PlayerControl1 : MonoBehaviour
         p_animator = GetComponent<Animator>();
         playerSpeed = 10;
         player_Controller = GetComponent<CharacterController>();
+        defaultScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -53,24 +56,45 @@ public class PlayerControl1 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P)) { takeDmg(5); }
 
-        hasControl = (movingThruDoor) ? false : true; 
-
+        hasControl = (movingThruDoor) ? false : true;
+        _isRunning = false;
         //If you player has Control
         if (hasControl) {
             _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, GroundLayer, QueryTriggerInteraction.Ignore);
-            if (_isGrounded)//!isJumping)
+            if (_isGrounded)
             {
                 p_Velocity.y = 0;
                 p_animator.SetBool("isGrounded", true);
 
             }
-            else
+            else // In air
+            {
+                p_animator.SetBool("isRunning", false);
                 p_animator.SetBool("isGrounded", false);
+            }
 
             //Movement Controls:            
-            if (Input.GetKey(KeyCode.D) ) { player_Controller.Move(transform.right  * Time.deltaTime * playerSpeed); }
-            if (Input.GetKey(KeyCode.A) ) { player_Controller.Move(-transform.right * Time.deltaTime * playerSpeed); }
-            if (Input.GetKeyDown(KeyCode.Space) && _isGrounded) { p_Velocity.y += Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y); }
+            if (Input.GetKey(KeyCode.D) ) {
+                transform.localScale = defaultScale;
+                _isRunning = true;                
+                player_Controller.Move(transform.right  * Time.deltaTime * playerSpeed);
+            }
+            
+            if (Input.GetKey(KeyCode.A) ) {
+                transform.localScale = new Vector3(-defaultScale.x, defaultScale.y, defaultScale.z);
+                _isRunning = true;
+                player_Controller.Move(-transform.right * Time.deltaTime * playerSpeed);
+            }
+
+            if(_isRunning)
+                p_animator.SetBool("isRunning", true);
+            else
+                p_animator.SetBool("isRunning", false);
+
+            if (Input.GetKeyDown(KeyCode.Space) && _isGrounded) {
+                p_animator.SetBool("isGrounded", false);
+                p_Velocity.y += Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
+            }
 
             //Door Controls:
             if (Input.GetKeyDown(KeyCode.W) && _isGrounded && !movingThruDoor) { triggerDoor = true; }
