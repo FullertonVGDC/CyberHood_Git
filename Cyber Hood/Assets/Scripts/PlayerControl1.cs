@@ -38,7 +38,10 @@ public class PlayerControl1 : MonoBehaviour
     Vector3 v3_startDoor;
     Vector3 v3_endDoor;
     private bool triggerDoor;
-    private bool movingThruDoor;    
+
+    [HideInInspector]
+    public bool movingThruDoor;
+
     float startTimeDoor;
     float journeyLengthDoor;
 
