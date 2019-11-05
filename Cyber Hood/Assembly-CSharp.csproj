@@ -620,6 +620,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Door\Sliding_door_script.cs" />
     <Compile Include="Assets\Scripts\Enemy\MeleeEnemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\RangedEnemy.cs" />
     <Compile Include="Assets\Scripts\HealthController.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\PlayerControl1.cs" />
@@ -666,37 +667,37 @@
     <None Include="Assets\Fungus\Thirdparty\TextMeshPro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Fungus\Docs\CHANGELOG.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/JayDiddyThaGOAT/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/J Diddy/Documents/Unity Projects/CyberHood_Git/Cyber Hood/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
