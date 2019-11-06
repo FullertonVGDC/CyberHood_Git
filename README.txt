@@ -10,3 +10,4 @@ Updates:
 10/17/19 - Designs for Level 1 made into Unity in Progress. Slight adjustments to doors to work with new mechanics.
 10/18/19 - Controls revamped for better collision control.
 10/25/19 - Animation Stand-ins added and connected to player movement.
+11/06/19 - Trap floors implemented. Needs particles still
