@@ -6,7 +6,14 @@ public class DisappearingFloors : MonoBehaviour
 {
     bool isChanging = false;
     bool ActiveStatus = true;
-    public int timerAmt;
+    public float delayAmt = 0;
+    public float timerAmt;
+
+    private void Start()
+    {
+        isChanging = true;
+        StartCoroutine(WaitForDelay());
+    }
 
     void Update()
     {
@@ -26,6 +33,11 @@ public class DisappearingFloors : MonoBehaviour
         Debug.Log("HALP!");
         isChanging = false;
         yield return null;
+    }
+
+    IEnumerator WaitForDelay() {
+        yield return new WaitForSeconds(delayAmt);
+        isChanging = false;
     }
 
 }
