@@ -12,6 +12,8 @@ public class celing_trap_ : MonoBehaviour
     public float delayAmt = 0;
     public float timerAmt;
     public int damage = 5;
+    public int blowBackForce = 800;
+
 
     private void Start()
     {
@@ -33,7 +35,13 @@ public class celing_trap_ : MonoBehaviour
         if (col.gameObject.name == "Player")
         {
             Player.GetComponent<PlayerControl>().takeDmg(damage);
-            Player.GetComponent<Rigidbody>().AddForce(transform.forward * -100);
+            // Calculate Angle Between the collision point and the player
+            Vector3 dir = col.contacts[0].point - transform.position;
+            // We then get the opposite (-Vector3) and normalize it
+            dir = -dir.normalized;
+            // And finally we add force in the direction of dir and multiply it by force. 
+            // This will push back the player
+            Player.GetComponent<PlayerControl>().BlowBack(dir, blowBackForce);
         }
     }
 
@@ -53,6 +61,5 @@ public class celing_trap_ : MonoBehaviour
         yield return new WaitForSeconds(delayAmt);
         isChanging = false;
     }
-
 
 }

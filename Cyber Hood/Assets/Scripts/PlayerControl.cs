@@ -198,4 +198,12 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    public void BlowBack(Vector3 direction, float blowBackForce)
+    {
+        if (Input.GetKey(KeyCode.D))
+            player_rb.AddForce(Vector3.left * blowBackForce);
+        else if (Input.GetKey(KeyCode.A))
+            player_rb.AddForce(Vector3.right * blowBackForce);
+    }
+
 }
