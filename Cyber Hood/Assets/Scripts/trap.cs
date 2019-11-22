@@ -25,16 +25,16 @@ public class trap : MonoBehaviour
         }
     }
 
-    //When Player continues to stand on the block
     void OnCollisionExit(Collision col)
     {
-        if(col.gameObject.name == "Player")
+       if(col.gameObject.name == "Player")
         {
             onTrap = false;
         }
     }
 
 
+    //When Player continues to stand on the block
     IEnumerator waitDamage(float waitTime, Collision col)
     {
         while (onTrap)
