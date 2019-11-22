@@ -30,7 +30,6 @@ public class DisappearingFloors : MonoBehaviour
         this.gameObject.GetComponent<BoxCollider>().enabled = ActiveStatus;
 
         yield return new WaitForSeconds(timerAmt);
-        Debug.Log("HALP!");
         isChanging = false;
         yield return null;
     }
