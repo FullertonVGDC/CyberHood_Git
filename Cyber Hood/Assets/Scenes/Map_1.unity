@@ -3253,7 +3253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &724686460
 Light:
   m_ObjectHideFlags: 0
@@ -4678,6 +4678,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1053717623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1081228834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5397963910404139241, guid: f766830433d301b4ba1a883f105c821d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2955818108056631777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1081228835
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081228834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 12, y: 11.5, z: 0}
 --- !u!4 &1085024967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1862363027788220030, guid: 68a7452988c30e140b62c6a54c81d801,

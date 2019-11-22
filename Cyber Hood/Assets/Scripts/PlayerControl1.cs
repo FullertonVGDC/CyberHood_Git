@@ -18,6 +18,7 @@ public class PlayerControl1 : MonoBehaviour
     private bool _isGrounded = true;
     private bool _isRunning = false;
     private bool hasControl = true;
+    private bool _isAttacking = false;
     private CharacterController player_Controller;
     private Vector3 p_Velocity = new Vector3(0,0,0);
 
@@ -108,19 +109,21 @@ public class PlayerControl1 : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
 
             //Sword Attack:
-            if (Input.GetKey(KeyCode.K) ) {
+            if (Input.GetKeyDown(KeyCode.K) && !_isAttacking ) {
+                //_isAttacking = true;
+                p_animator.SetTrigger("meleeTrigger");
                 ;
             }
 
             //Gun Attack:
-            if (Input.GetKey(KeyCode.L) && hasGun) {
+            if (Input.GetKeyDown(KeyCode.L) && hasGun && !_isAttacking) {
                 ;
             }
         }
 
-        //Always Apply Gravity
-        
+        //Always Apply Gravity        
         p_Velocity.y += Physics.gravity.y*gravityModifier * Time.deltaTime;
+
         player_Controller.Move(p_Velocity * Time.deltaTime);
 
     }
