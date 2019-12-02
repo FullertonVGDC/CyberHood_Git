@@ -11,3 +11,4 @@ Updates:
 10/18/19 - Controls revamped for better collision control.
 10/25/19 - Animation Stand-ins added and connected to player movement.
 11/06/19 - Trap floors implemented. Needs particles still
+12/1/19 - Map upgrades, some sounds added, Main Menu functional, Pickup health added

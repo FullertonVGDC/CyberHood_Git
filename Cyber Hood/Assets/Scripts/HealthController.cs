@@ -18,7 +18,7 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int hp = player.GetComponent<PlayerControl>().playerHealth;
+        int hp = player.GetComponent<PlayerControl1>().playerHealth;
 
         if (hp <= 0) { healthBar_Image.color = new Color(0f, 0f, 0f, 1f); }
         else if (hp <= 25) { healthBar_Image.color = new Color(1f, 0f, 0f, 1f); }
@@ -38,10 +38,10 @@ public class HealthController : MonoBehaviour
             y = y_original + Random.Range(-intensity, intensity);
             GetComponent<RectTransform>().anchoredPosition = new Vector2(x,y);
             yield return new WaitForSeconds(0.1f);
-            Debug.Log("OG pos: " + x_original + " " + y_original);
+            //Debug.Log("OG pos: " + x_original + " " + y_original);
         }
         GetComponent<RectTransform>().anchoredPosition = new Vector2(x_original, y_original);
-        Debug.Log("OG pos: " + GetComponent<RectTransform>().anchoredPosition);
+        //Debug.Log("OG pos: " + GetComponent<RectTransform>().anchoredPosition);
         takingDamage = false;
 
         yield return null;
