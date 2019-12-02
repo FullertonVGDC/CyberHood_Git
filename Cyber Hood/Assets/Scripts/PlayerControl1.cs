@@ -24,6 +24,9 @@ public class PlayerControl1 : MonoBehaviour
 
 
     private Animator p_animator;
+    AudioSource as_playerSounds;
+    public AudioClip ac_swordSwing;
+    public AudioClip ac_deathSound;
 
     //Vars for Camera Rotation:
     bool changeCamAngle = false;
@@ -53,6 +56,8 @@ public class PlayerControl1 : MonoBehaviour
         playerSpeed = 10;
         player_Controller = GetComponent<CharacterController>();
         defaultScale = transform.localScale;
+        as_playerSounds = GetComponent<AudioSource>();
+        as_playerSounds.clip = ac_swordSwing;
     }
 
     // Update is called once per frame
@@ -112,7 +117,7 @@ public class PlayerControl1 : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K) && !_isAttacking ) {
                 //_isAttacking = true;
                 p_animator.SetTrigger("meleeTrigger");
-                ;
+                as_playerSounds.Play();
             }
 
             //Gun Attack:
@@ -161,11 +166,15 @@ public class PlayerControl1 : MonoBehaviour
     public void takeDmg(int amt) {
         playerHealth -= amt;
 
+        if (playerHealth > 100)
+            playerHealth = 100;
+
         //UI auto updates based on current Health
         GameObject tempObj;
         if ((tempObj = GameObject.FindGameObjectWithTag("HealthBar")) && !tempObj.GetComponent<HealthController>().takingDamage) {
             tempObj.GetComponent<HealthController>().takingDamage = true;
-            StartCoroutine(tempObj.GetComponent<HealthController>().ShakeHealth()); //Shake UI Screen
+            if(amt > 0)
+                StartCoroutine(tempObj.GetComponent<HealthController>().ShakeHealth()); //Shake UI Screen
         }
 
         if (playerHealth <= 0) { Dead(); } // Check if player has died
@@ -177,6 +186,9 @@ public class PlayerControl1 : MonoBehaviour
         hasControl = false;
         //Todo: Play Death Animation
         //Todo: Reload to last Save
+        as_playerSounds.clip = ac_deathSound;
+        as_playerSounds.Play();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     void StartSlerp(int angleChange) {
@@ -220,6 +232,15 @@ public class PlayerControl1 : MonoBehaviour
             v3_endDoor = new Vector3(endPos.x, transform.position.y, endPos.z);
             journeyLengthDoor = Vector3.Distance(v3_startDoor, v3_endDoor);
             Debug.Log("start: " + v3_startDoor + " end: " + v3_endDoor + " distance: " + journeyLengthDoor);
+        }
+
+        // Collection of DataPoints
+        if (other.gameObject.tag == "DataPoint")
+        {
+            
+            dataPoints++;
+            takeDmg(-25);
+            other.gameObject.GetComponent<dataPoint_Pickup>().playCollectSound();
         }
 
     }

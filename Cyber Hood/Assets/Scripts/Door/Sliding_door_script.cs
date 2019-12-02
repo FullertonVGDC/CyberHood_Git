@@ -7,11 +7,13 @@ public class Sliding_door_script : MonoBehaviour
     public Light statusLight;
 
     Animator doorAnim;
+    AudioSource a_doorOpening;
 
     // Start is called before the first frame update
     void Start()
     {
         doorAnim = this.GetComponent<Animator>();
+        a_doorOpening = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -34,6 +36,7 @@ public class Sliding_door_script : MonoBehaviour
         if (coll.gameObject.tag == "Player" && !isLocked)
         {
             SlideDoor(true);
+            a_doorOpening.Play();
         }
 
     }

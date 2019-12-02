@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-
     
     enum GameState { Tutorial, Area_1, End }
     GameState currentState;
@@ -44,5 +43,7 @@ public class GameFlow : MonoBehaviour
 
         yield return null;
     }
+
+
 
 }

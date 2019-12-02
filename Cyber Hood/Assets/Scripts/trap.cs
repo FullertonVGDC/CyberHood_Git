@@ -15,19 +15,20 @@ public class trap : MonoBehaviour
     public bool onTrap = false;
 
     //When Player initially steps on trap, tick off 5 health
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Player")
+        if (col.gameObject.tag == "Player")
         {
             onTrap = true;
-            Player.GetComponent<PlayerControl>().takeDmg(initialDamage);
+            Player.GetComponent<PlayerControl1>().takeDmg(initialDamage);
             StartCoroutine(waitDamage(waitTime, col));
         }
     }
 
-    void OnCollisionExit(Collision col)
+
+    void OnTriggerExit(Collider col)
     {
-       if(col.gameObject.name == "Player")
+       if(col.gameObject.tag == "Player")
         {
             onTrap = false;
         }
@@ -35,13 +36,13 @@ public class trap : MonoBehaviour
 
 
     //When Player continues to stand on the block
-    IEnumerator waitDamage(float waitTime, Collision col)
+    IEnumerator waitDamage(float waitTime, Collider col)
     {
         while (onTrap)
         {
-            if (col.gameObject.name == "Player")
+            if (col.gameObject.tag == "Player")
             {
-                Player.GetComponent<PlayerControl>().takeDmg(continuousDamage);
+                Player.GetComponent<PlayerControl1>().takeDmg(continuousDamage);
             }
             yield return new WaitForSeconds(waitTime);
         }
