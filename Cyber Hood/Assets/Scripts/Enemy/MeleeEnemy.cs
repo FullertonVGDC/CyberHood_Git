@@ -8,6 +8,7 @@ public class MeleeEnemy : MonoBehaviour
 
     Animator anim;
     Rigidbody body;
+    SpriteRenderer sprite;
 
     PlayerControl1 player;
     float distanceToPlayer;
@@ -17,6 +18,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
+        sprite = GetComponent<SpriteRenderer>();
 
         player = FindObjectOfType<PlayerControl1>();
     }
@@ -33,10 +35,11 @@ public class MeleeEnemy : MonoBehaviour
             distanceToPlayer = player.transform.position.x - transform.position.x;
         }
 
-        anim.SetFloat("Distance To Player", distanceToPlayer);
+        sprite.flipX = distanceToPlayer < 0f;
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= 10f)
+        if (Vector3.Distance(player.transform.position, transform.position) <= 20f)
         {
+            anim.SetFloat("Distance To Player", Mathf.Abs(distanceToPlayer));
             if (transform.localEulerAngles.y == 270 || transform.localEulerAngles.y == 90)
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, player.transform.position.z), speed * Time.deltaTime);
@@ -45,6 +48,16 @@ public class MeleeEnemy : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
             }
+        }
+        else
+            anim.SetFloat("Distance To Player", 0);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            player.takeDmg(10);
         }
     }
 }
