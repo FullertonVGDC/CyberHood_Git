@@ -18,6 +18,7 @@ public class PlayerControl1 : MonoBehaviour
     private bool _isGrounded = true;
     private bool _isRunning = false;
     private bool hasControl = true;
+    private bool playerActive = true;
     private bool _isAttacking = false;
     private CharacterController player_Controller;
     private Vector3 p_Velocity = new Vector3(0,0,0);
@@ -63,74 +64,86 @@ public class PlayerControl1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) { takeDmg(5); }
-
-        hasControl = (movingThruDoor) ? false : true;
-        _isRunning = false;
-        //If you player has Control
-        if (hasControl) {
-            _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, GroundLayer, QueryTriggerInteraction.Ignore);
-            if (_isGrounded)
-            {
-                p_Velocity.y = 0;
-                p_animator.SetBool("isGrounded", true);
-
-            }
-            else // In air
-            {
-                p_animator.SetBool("isRunning", false);
-                p_animator.SetBool("isGrounded", false);
-            }
-
-            //Movement Controls:            
-            if (Input.GetKey(KeyCode.D) ) {
-                transform.localScale = defaultScale;
-                _isRunning = true;                
-                player_Controller.Move(transform.right  * Time.deltaTime * playerSpeed);
-            }
-            
-            if (Input.GetKey(KeyCode.A) ) {
-                transform.localScale = new Vector3(-defaultScale.x, defaultScale.y, defaultScale.z);
-                _isRunning = true;
-                player_Controller.Move(-transform.right * Time.deltaTime * playerSpeed);
-            }
-
-            if(_isRunning)
-                p_animator.SetBool("isRunning", true);
-            else
-                p_animator.SetBool("isRunning", false);
-
-            if (Input.GetKeyDown(KeyCode.Space) && _isGrounded) {
-                p_animator.SetBool("isGrounded", false);
-                p_Velocity.y += Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
-            }
-
-            //Door Controls:
-            if (Input.GetKeyDown(KeyCode.W) && _isGrounded && !movingThruDoor) { triggerDoor = true; }
-            if (Input.GetKeyUp(KeyCode.W)) { triggerDoor = false; }
-
-            //Camera Controls:
-            //if (Input.GetKeyDown(KeyCode.E) && !changeCamAngle) { StartSlerp(90); }
-            //if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
-
-            //Sword Attack:
-            if (Input.GetKeyDown(KeyCode.K) && !_isAttacking ) {
-                //_isAttacking = true;
-                p_animator.SetTrigger("meleeTrigger");
-                as_playerSounds.Play();
-            }
-
-            //Gun Attack:
-            if (Input.GetKeyDown(KeyCode.L) && hasGun && !_isAttacking) {
-                ;
-            }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+        if (playerActive) {
+            //if (Input.GetKeyDown(KeyCode.P)) { takeDmg(5); }
 
-        //Always Apply Gravity        
-        p_Velocity.y += Physics.gravity.y*gravityModifier * Time.deltaTime;
+            hasControl = (movingThruDoor) ? false : true;
+            _isRunning = false;
+            
+            //If you player has Control
+            if (hasControl)
+            {
+                _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, GroundLayer, QueryTriggerInteraction.Ignore);
+                if (_isGrounded)
+                {
+                    p_Velocity.y = 0;
+                    p_animator.SetBool("isGrounded", true);
 
-        player_Controller.Move(p_Velocity * Time.deltaTime);
+                }
+                else // In air
+                {
+                    p_animator.SetBool("isRunning", false);
+                    p_animator.SetBool("isGrounded", false);
+                }
 
+                //Movement Controls:            
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.localScale = defaultScale;
+                    _isRunning = true;
+                    player_Controller.Move(transform.right * Time.deltaTime * playerSpeed);
+                }
+
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.localScale = new Vector3(-defaultScale.x, defaultScale.y, defaultScale.z);
+                    _isRunning = true;
+                    player_Controller.Move(-transform.right * Time.deltaTime * playerSpeed);
+                }
+
+                if (_isRunning)
+                    p_animator.SetBool("isRunning", true);
+                else
+                    p_animator.SetBool("isRunning", false);
+
+                if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+                {
+                    p_animator.SetBool("isGrounded", false);
+                    p_Velocity.y += Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
+                }
+
+                //Door Controls:
+                if (Input.GetKeyDown(KeyCode.W) && _isGrounded && !movingThruDoor) { triggerDoor = true; }
+                if (Input.GetKeyUp(KeyCode.W)) { triggerDoor = false; }
+
+                //Camera Controls:
+                //if (Input.GetKeyDown(KeyCode.E) && !changeCamAngle) { StartSlerp(90); }
+                //if (Input.GetKeyDown(KeyCode.Q) && !changeCamAngle) { StartSlerp(-90); }
+
+                //Sword Attack:
+                if (Input.GetKeyDown(KeyCode.K) && !_isAttacking)
+                {
+                    //_isAttacking = true;
+                    p_animator.SetTrigger("meleeTrigger");
+                    as_playerSounds.Play();
+                }
+
+                //Gun Attack:
+                if (Input.GetKeyDown(KeyCode.L) && hasGun && !_isAttacking)
+                {
+                    ;
+                }
+            }
+
+            //Always Apply Gravity        
+            p_Velocity.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
+
+            player_Controller.Move(p_Velocity * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
@@ -152,6 +165,9 @@ public class PlayerControl1 : MonoBehaviour
                 movingThruDoor = false;
         }
     }
+
+    public void GivePlayerControl() { playerActive = true; }
+    public void StopPlayerControl() { playerActive = false; }
 
     private void OnCollisionEnter(Collision other)
     {

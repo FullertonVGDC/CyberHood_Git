@@ -14,6 +14,7 @@ public class GameFlow : MonoBehaviour
     {
         gf_Player = GameObject.FindGameObjectWithTag("Player");
         currentState = GameState.Tutorial;
+        gf_Player.GetComponent<PlayerControl1>().StopPlayerControl();
         StartCoroutine(f_GameStart());
 
     }
@@ -28,22 +29,34 @@ public class GameFlow : MonoBehaviour
     IEnumerator f_GameStart() {
         Debug.Log("Game Start");
         yield return StartCoroutine(f_GameTutorial());
-        //MainGame
+        yield return StartCoroutine(f_MainGame());
         //End
 
         Debug.Log("END OF IT ALL");
-        yield return null;
     }
 
     IEnumerator f_GameTutorial()
     {
         Debug.Log("Tutorial Start");
         //repeat while dialog and tut still going
+
+        yield return null;
+
+    }
+
+    IEnumerator f_MainGame()
+    {
+        Debug.Log("Game Starts");
+        gf_Player.GetComponent<PlayerControl1>().GivePlayerControl();
+
         yield return new WaitForSeconds(2);
 
         yield return null;
     }
 
+    //Created for crunch time
+    public void givePlrControl() { gf_Player.GetComponent<PlayerControl1>().GivePlayerControl(); }
+    public void stopPlrControl() { gf_Player.GetComponent<PlayerControl1>().StopPlayerControl(); }
 
 
 }
