@@ -779,7 +779,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.50002, y: 14.4}
-  m_SizeDelta: {x: 691.8, y: 409.2}
+  m_SizeDelta: {x: 775.3, y: 490.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204830013
 MonoBehaviour:
@@ -801,10 +801,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -812,12 +812,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits:\n\n\n\nVGDC Supporters:\n\nAlan Blandon\r, Benton Loi, Vincent
-    Tran, Jalen Jackson\r, Ethan Weissenberg\r, Rodney Nobles\r, Alex Amador\r, Kyle
-    Seabaugh\r, Andrew Lau\r, Ean McGilvery\r, Mauricio Macias\r, Sebastian Hernandez\r,
-    Tyler Huor\r, Lynn Benner\r, Stephanie Pocci\r, Claire van Beek\r, Ludwig Tan\r,
-    Tara Nguyen\r, Nathaniel Richards\r, Carly Buck\r, Leslie Segundo\r, Samuel Na,
-    Eric Pineda\r, Luis Rangel\r, Raymond Fanning\r, Daniel Domingo"
+  m_Text: "Credits:\n\n  Project Director:                Lead Programmer:\r\nEmerson
+    Dauwalder              Daniel Domingo\r\n\r\nCast:\r\nJay\u2026\u2026.\u2026\u2026...Deja
+    Cannon\r\nAlpha\u2026.\u2026\u2026\u2026.\u2026..Ivan Hoz\r\nMaeve.\u2026...Emily
+    Dauwalder\r\n\r\n  Design:                             Programmers:\r\nAlex Amador
+    \                      Jalen Jackson\r\nChai Appling                        Ean
+    McGilvery\r\nEmerson Dauwalder             Stephanie Pocci\r\nEmily Montgomery
+    \                                        \r\nMetztli Rodriguez                                        \r\n\r\nAnimators:
+    \                         2D Artists:\r\nChai Appling                        Emily
+    Montgomery\r\nSandra Leo                          Kaleb Sweringen\r\nMetztli Rodriguez
+    \                                         \r\n\r\n  3D Artist:                        Script:\r\n
+    Alan Richards            Emerson Dauwalder\r\n\r\n  Sound:                                   Music:\r\n
+    \    Nicholas Rogers              Frankum & Frankumjay\n\nVGDC Supporters:\nAlan
+    Blandon\r, Benton Loi, Vincent Tran, Jalen Jackson\r, Ethan Weissenberg\r, Rodney
+    Nobles\r, Alex Amador\r, Kyle Seabaugh\r, Andrew Lau\r, Ean McGilvery\r, Mauricio
+    Macias\r, Sebastian Hernandez\r, Tyler Huor\r, Lynn Benner\r, Stephanie Pocci\r,
+    Claire van Beek\r, Ludwig Tan\r, Tara Nguyen\r, Nathaniel Richards\r, Carly Buck\r,
+    Leslie Segundo\r, Samuel Na, Eric Pineda\r, Luis Rangel\r, Raymond Fanning\r,
+    Daniel Domingo"
 --- !u!222 &1204830014
 CanvasRenderer:
   m_ObjectHideFlags: 0
