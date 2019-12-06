@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeEnemy : MonoBehaviour
 {
     public float speed;
-    public int health = 100;
+    public int health = 2;
 
     Animator anim;
     Rigidbody body;
@@ -55,16 +55,5 @@ public class MeleeEnemy : MonoBehaviour
         }
         else
             anim.SetFloat("Distance To Player", 0);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            if (!other.GetComponent<PlayerControl1>().IsAttacking())
-                player.takeDmg(10);
-            else
-                health -= 50;
-        }
     }
 }

@@ -245,8 +245,14 @@ public class PlayerControl1 : MonoBehaviour
             Debug.Log("start: " + v3_startDoor + " end: " + v3_endDoor + " distance: " + journeyLengthDoor);
         }
 
-        
-        
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (_isAttacking)
+            {
+                other.gameObject.GetComponent<MeleeEnemy>().health--;
+                _isAttacking = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -264,7 +270,6 @@ public class PlayerControl1 : MonoBehaviour
             journeyLengthDoor = Vector3.Distance(v3_startDoor, v3_endDoor);
             Debug.Log("start: " + v3_startDoor + " end: " + v3_endDoor + " distance: " + journeyLengthDoor);
         }
-
         // Collection of DataPoints
         if (other.gameObject.tag == "DataPoint")
         {
@@ -273,7 +278,5 @@ public class PlayerControl1 : MonoBehaviour
             takeDmg(-25);
             other.gameObject.GetComponent<dataPoint_Pickup>().playCollectSound();
         }
-
     }
-
 }

@@ -9,6 +9,7 @@ TagManager:
   - DoorEntry
   - DoorEntry2
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX

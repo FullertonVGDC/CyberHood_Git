@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6590808979226335562}
   m_Layer: 0
   m_Name: Melee Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a950c8f1b51fb7b46b353bb1ed1e7e45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9a1f4adb8344cc4d8ca5faad3ff1b14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e725afd74678a114bb4248e2bfb24c15, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  health: 2
 --- !u!65 &6590808979226335562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,5 +127,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Size: {x: 3, y: 3, z: 1}
+  m_Center: {x: 0.32, y: 0.2, z: 0}
