@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeEnemy : MonoBehaviour
 {
     public float speed;
+    public int health = 100;
 
     Animator anim;
     Rigidbody body;
@@ -26,6 +27,9 @@ public class MeleeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+            Destroy(gameObject);
+
         if (transform.localEulerAngles.y == 270 || transform.localEulerAngles.y == 90)
         {
             distanceToPlayer = player.transform.position.z - transform.position.z;
@@ -57,7 +61,10 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            player.takeDmg(10);
+            if (!other.GetComponent<PlayerControl1>().IsAttacking())
+                player.takeDmg(10);
+            else
+                health -= 50;
         }
     }
 }

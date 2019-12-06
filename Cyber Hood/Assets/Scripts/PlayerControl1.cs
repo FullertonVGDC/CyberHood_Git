@@ -61,6 +61,21 @@ public class PlayerControl1 : MonoBehaviour
         as_playerSounds.clip = ac_swordSwing;
     }
 
+    public void StartAttacking()
+    {
+        _isAttacking = true;
+    }
+
+    public void EndAttacking()
+    {
+        _isAttacking = false;
+    }
+
+    public bool IsAttacking()
+    {
+        return _isAttacking;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -135,7 +150,7 @@ public class PlayerControl1 : MonoBehaviour
                 //Gun Attack:
                 if (Input.GetKeyDown(KeyCode.L) && hasGun && !_isAttacking)
                 {
-                    ;
+                    
                 }
             }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
+    public int health = 100;
+
     PlayerControl1 player;
     SpriteRenderer sprite;
     float distanceToPlayer;
